@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment            # 声明资源角色deployment
+metadata:                   # 元数据
+  name: nginx-deployment    # 定义pod
+  labels:
+    app: nginx
+spec:
+  replicas: 3 # 副本个数
+  selector:
+    matchLabels:
+      app: nginx
+  revisionHistoryLimit: 3 # 保存旧的副本数，如果设置为0则无法执行回滚
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx # 容器名称
+        image: nginx:1.15.4 # 容器镜像
+        ports:
+        - containerPort: 80 # 端口
