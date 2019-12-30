@@ -20,4 +20,17 @@ multi-repo vs mono-repo
 > * 声明式编程 ：只给计算机说想要的结果，计算机自己实现
 > * 命令式编程：编写执行的步骤交给计算机，计算机按照步骤执行
 
-### ReplicaSet
+### ReplicaSet & ReplicationController
+
+ReplicaSet(rs)支持选择器，ReplicationController(rc)不支持，建议使用deployment
+
+### StatefulSets
+
+[StatefulSet](https://kubernetes.io/zh/docs/concepts/workloads/controllers/statefulset)是用来部署有状态的服务的，比如数据库、zookeeper等,它为每个容器维护一个固定的id，不会跟谁调度改变
+
+#### 特点
+
+* 稳定的、唯一的网络标识符。
+* 稳定的、持久的存储。
+* 有序的、优雅的部署和缩放。
+* 有序的、自动的滚动更新。

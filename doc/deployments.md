@@ -42,15 +42,15 @@ cat <<EOF > nginx-deploy.yaml
 apiVersion: apps/v1
 kind: Deployment            # 声明资源角色deployment
 metadata:                   # 元数据
-  name: nginx-deploy    # 定义pod
+  name: nginx-deployment    # 定义pod
   labels:
     app: nginx
 spec:
-  replicas: 3               # 副本个数
+  replicas: 3 # 副本个数
   selector:
     matchLabels:
       app: nginx
-  revisionHistoryLimit: 3   # 保存旧的副本数，如果设置为0则无法执行回滚
+  revisionHistoryLimit: 3 # 保存旧的副本数，如果设置为0则无法执行回滚
   template:
     metadata:
       labels:
@@ -59,6 +59,7 @@ spec:
       containers:
       - name: nginx # 容器名称
         image: nginx:1.15.4 # 容器镜像
+        imagePullPolicy: ifNotPresent # 镜像拉去策略 Always、Naver、ifNotPresent（默认）
         ports:
         - containerPort: 80 # 端口
 EOF
@@ -186,3 +187,9 @@ deployment.apps/nginx-deploy paused
 deployment.apps/nginx-deploy paused
 ```
 
+#### 删除
+
+```shell
+[vagrant@kube-master k8s]$ kubectl delete deploy nginx-deploy 
+deployment.apps "nginx-deploy" deleted
+```
