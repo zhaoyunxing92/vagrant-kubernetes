@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-svc
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      name: nginx-deployment-svc
+  revisionHistoryLimit: 3 # 保存旧的副本数，如果设置为0则无法执行回滚
+  template:
+    metadata:
+      labels:
+        name: nginx-deployment-svc
+    spec:
+      containers:
+      - name: nginx # 容器名称
+        image: nginx:1.15.4 # 容器镜像
+        imagePullPolicy: IfNotPresent # 镜像拉去策略 Always、Naver、IfNotPresent（默认）
+        ports:
+        - containerPort: 80 # 端口

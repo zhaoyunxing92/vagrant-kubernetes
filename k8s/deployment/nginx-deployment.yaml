@@ -18,6 +18,6 @@ spec:
       containers:
       - name: nginx # 容器名称
         image: nginx:1.15.4 # 容器镜像
-        imagePullPolicy: ifNotPresent # 镜像拉去策略 Always、Naver、ifNotPresent（默认）
+        imagePullPolicy: IfNotPresent # 镜像拉去策略 Always、Naver、IfNotPresent（默认）
         ports:
         - containerPort: 80 # 端口  
