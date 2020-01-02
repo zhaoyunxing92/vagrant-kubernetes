@@ -2,24 +2,24 @@
 
  将运行在一组 [Pods](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/) 上的应用程序公开为网络服务的抽象方法.
 
-## 定义service
+## 使用
+
+### 定义service
 
 ```she
 kind: Service
 apiVersion: v1
 metadata:
-  name:  nginx-service
+  name: nginx-service
   labels:
     name: nginx-deployment-svc
 spec:
   selector:
-    name:  nginx-deployment-svc
-  type:  NodePort # LoadBalancer | ClusterIP | NodePort
+    name: nginx-deployment-svc
+  type: NodePort # LoadBalancer | ClusterIP | NodePort |ExternalName
   ports:
-  - name:  nginx-80
-    port:  80
+  - name: nginx-80
+    port: 80
     protocol: TCP
-    targetPort:  80 # pod 端口
+    targetPort: 80 # pod 端口
 ```
-
-* `spec.type` NodePort node主机可以访问 
