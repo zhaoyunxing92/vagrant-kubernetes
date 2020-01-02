@@ -85,3 +85,35 @@ search default.svc.cluster.local svc.cluster.local cluster.local
 options ndots:5
 ```
 
+使用`dig`查看域名解析
+
+```shell
+sudo yum -y install bind-utils
+```
+
+```shell
+[vagrant@kube-master service]$ dig -t A nginx-svc.default.svc.cluster.local @10.244.0.5
+
+; <<>> DiG 9.11.4-P2-RedHat-9.11.4-9.P2.el7 <<>> -t A nginx-svc.default.svc.cluster.local @10.244.0.5
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51107
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;nginx-svc.default.svc.cluster.local. IN	A
+
+;; ANSWER SECTION:
+nginx-svc.default.svc.cluster.local. 30	IN A	10.96.54.110
+
+;; Query time: 0 msec
+;; SERVER: 10.244.0.5#53(10.244.0.5)
+;; WHEN: Thu Jan 02 23:59:20 CST 2020
+;; MSG SIZE  rcvd: 115
+```
+
