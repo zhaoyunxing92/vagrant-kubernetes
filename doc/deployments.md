@@ -1,4 +1,4 @@
-# Deployments使用
+# k8s中的Deployments
 
 > 主要是对官方的案例实践
 
