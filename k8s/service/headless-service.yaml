@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  nginx-service
+  labels:
+    name: nginx-deployment-svc
+spec:
+  selector:
+    name:  nginx-deployment-svc
+  clusterIP: None
+  ports:
+  - name:  nginx-80
+    port:  80
+    protocol: TCP
+    targetPort:  80 # pod 端口
