@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dubbo-consumer
+spec:
+  selector:
+    matchLabels:
+      app: dubbo-consumer
+  template:
+    metadata:
+      labels:
+        app: dubbo-consumer
+    spec:
+      containers:
+      - name: dubbo-consumer
+        image: registry.cn-shenzhen.aliyuncs.com/zhaoyunxing92/dubbo-consumer-sample:1.0
+        ports:
+        - containerPort: <Port>

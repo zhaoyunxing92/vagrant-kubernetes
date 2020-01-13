@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dubbo-provider
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dubbo-provider
+  template:
+    metadata:
+      labels:
+        app: dubbo-provider
+    spec:
+      containers:
+      - name: dubbo-provider
+        image: registry.cn-shenzhen.aliyuncs.com/zhaoyunxing92/dubbo-provider-sample:1.0
+        #ports:
+        #- containerPort: 20880
